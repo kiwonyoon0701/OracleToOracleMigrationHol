@@ -3,9 +3,19 @@ create table SALES_ORDER_MONITOR (id number);
 
 CREATE OR REPLACE TRIGGER MYTRIGGER
 after 
-INSERT INTO SALES_ORDER
+INSERT ON SALES_ORDER
 for each row
 BEGIN
 INSERT INTO SALES_ORDER_MONITOR(ID) VALUES (:NEW.ID);
 END;
 /
+
+insert into SALES_ORDER values (10);
+commit;
+
+
+
+SQL> select * from SALES_ORDER_MONITOR;
+	ID
+----------
+	10
