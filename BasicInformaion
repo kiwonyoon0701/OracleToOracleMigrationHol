@@ -1,5 +1,6 @@
 DB AMI : ami-038cc175b5dc432c5
 WAS AMI : ami-088c8b2a94f1b9e09
+Windows AMI :ami-0b5dac5116b56527b
 http://IP:8080/dbconnection.jsp
  
 Region Seoul
