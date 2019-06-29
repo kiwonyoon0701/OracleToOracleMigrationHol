@@ -1,0 +1,5 @@
+alter table bigemp nologging;
+insert /*+ APPEND PARALLEL ( BE, 16) */ into BIGEMP BE select /*+ PARALLEL ( BEE, 16) */ * from BIGEMP BEE;
+commit;
+
+create table bigemp4 parallel (degree 16) unrecoverable as select * from bigemp;
