@@ -6,7 +6,7 @@ FOR i in 1..MAXFOR
 loop
   FOR j in 1..10000
     loop
-    INSERT INTO DUMMY (DUMMY)
+    INSERT INTO DUMMY (ID)
      Values(j);
       LOOPNUM := LOOPNUM + 1;
     END LOOP;
