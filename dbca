@@ -9,3 +9,7 @@ sed -i 's/orcl11g/salesdb/g' /tmp/dbca.rsp
 sed -i 's/#SYSPASSWORD = "password"/SYSPASSWORD = "Welcome#12"/g' /tmp/dbca.rsp
 sed -i 's/#SYSTEMPASSWORD = "password"/SYSTEMPASSWORD = "Welcome#12"/g' /tmp/dbca.rsp
 dbca -silent -responseFile /tmp/dbca.rsp
+
+dbca -silent -deleteDatabase -sourceDB salesdb -sysDBAUserName sys -sysDBAPassword Welcome#12
+
+
