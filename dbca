@@ -2,6 +2,8 @@ chown oracle:oinstall /home/oracle/11gR2.rsp
 grep HOSTNAME 11gR2.rsp
 vi 11gR2.rsp
 ./runInstaller -ignoreSysPrereqs -ignorePrereq -waitforcompletion -showProgress -silent -responseFile /home/oracle/11gR2.rsp
+
+cp $ORACLE_HOME/assistants/dbca/dbca.rsp /tmp
 sed -i 's/orcl11g.us.oracle.com/salesdb.kiwony.com/g' /tmp/dbca.rsp
 sed -i 's/orcl11g/salesdb/g' /tmp/dbca.rsp
 sed -i 's/#SYSPASSWORD = "password"/SYSPASSWORD = "Welcome#12"/g' /tmp/dbca.rsp
