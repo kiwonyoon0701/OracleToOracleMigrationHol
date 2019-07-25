@@ -108,7 +108,10 @@ INSERT INTO SALGRADE VALUES (5, 3001, 9999);
 CREATE TABLE DUMMY
         (DUMMY NUMBER);
 
-INSERT INTO DUMMY VALUES (0);
+alter table emp add constraint emp_pk primary key(empno);
+alter table dept add constraint dept_pk primary key(deptno);
+ALTER table DUMMY add constraint DUMMY_PK primary key(ID);
+
 
 COMMIT;
 
