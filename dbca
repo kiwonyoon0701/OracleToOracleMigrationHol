@@ -11,6 +11,6 @@ sed -i 's/#SYSPASSWORD = "password"/SYSPASSWORD = "Octank#1234"/g' /tmp/dbca.rsp
 sed -i 's/#SYSTEMPASSWORD = "password"/SYSTEMPASSWORD = "Octank#1234"/g' /tmp/dbca.rsp
 dbca -silent -responseFile /tmp/dbca.rsp
 
-dbca -silent -deleteDatabase -sourceDB salesdb -sysDBAUserName sys -sysDBAPassword Welcome#12
+dbca -silent -deleteDatabase -sourceDB salesdb -sysDBAUserName sys -sysDBAPassword Octank#1234
 
 
