@@ -8,3 +8,31 @@ owner as "Schema"
 from dba_segments
 where segment_name=’<table_name>’
 and owner='<Table owner>';
+
+# TBS Size and usage
+select    tbs.tablespace_name,
+tot.bytes/1024 total,
+tot.bytes/1024-sum(nvl(fre.bytes,0))/1024 used,
+sum(nvl(fre.bytes,0))/1024 free,
+(1-sum(nvl(fre.bytes,0))/tot.bytes)*100 pct
+from      dba_free_space fre,
+(select  tablespace_name, sum(bytes) bytes
+from      dba_data_files
+group by tablespace_name) tot,
+dba_tablespaces tbs
+where   tot.tablespace_name    = tbs.tablespace_name
+and        fre.tablespace_name(+) = tbs.tablespace_name
+group by tbs.tablespace_name, tot.bytes/1024, tot.bytes
+union
+select    tsh.tablespace_name,
+dtf.bytes/1024 total,
+sum(nvl(tsh.bytes_used,0))/1024 used,
+sum(nvl(tsh.bytes_free,0))/1024 free,
+(1-sum(nvl(tsh.bytes_free,0))/dtf.bytes)*100 pct
+from             v$temp_space_header tsh,
+(select tablespace_name, sum(bytes) bytes
+from dba_temp_files
+group by tablespace_name) dtf
+where   dtf.tablespace_name     = tsh.tablespace_name(+)
+group by tsh.tablespace_name, dtf.bytes/1024, dtf.bytes
+order by 1
